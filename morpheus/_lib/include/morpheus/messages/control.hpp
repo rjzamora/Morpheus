@@ -256,6 +256,12 @@ class ControlMessage
      */
     void payload(const std::shared_ptr<MessageMeta>& payload);
 
+
+    // Experimental API to set/get python object reference
+    void attach_object(const pybind11::object& value);
+    const pybind11::object get_object() const;
+
+
     /**
      * @brief Get the type of task associated with the control message.
      * @return An enum value indicating the task type.
@@ -275,6 +281,7 @@ class ControlMessage
 
     ControlMessageType m_cm_type{ControlMessageType::NONE};
     std::shared_ptr<MessageMeta> m_payload{nullptr};
+    pybind11::object m_obj_payload{};
 
     nlohmann::json m_tasks{};
     nlohmann::json m_config{};

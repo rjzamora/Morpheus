@@ -380,6 +380,8 @@ PYBIND11_MODULE(messages, _module)
             "payload",
             pybind11::overload_cast<ControlMessage&, const py::object&>(&ControlMessageProxy::payload_from_python_meta),
             py::arg("meta"))
+        .def("attach_object", &ControlMessage::attach_object, py::arg("value"))
+        .def("get_object", &ControlMessage::get_object)
         .def("remove_task", &ControlMessageProxy::remove_task, py::arg("task_type"))
         .def("set_metadata", &ControlMessageProxy::set_metadata, py::arg("key"), py::arg("value"))
         .def("task_type", pybind11::overload_cast<>(&ControlMessage::task_type))

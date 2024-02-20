@@ -185,6 +185,19 @@ void ControlMessage::payload(const std::shared_ptr<MessageMeta>& payload)
     m_payload = payload;
 }
 
+
+void ControlMessage::attach_object(const py::object& value)
+{
+    m_obj_payload = value;
+}
+
+
+const pybind11::object ControlMessage::get_object() const
+{
+    return m_obj_payload;
+}
+
+
 ControlMessageType ControlMessage::task_type()
 {
     return m_cm_type;
